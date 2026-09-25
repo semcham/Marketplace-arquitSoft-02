@@ -4,7 +4,7 @@
 
 ## Integrantes
 
-- Integrante 1
+- TORRES MORALES SEM CHAM
 
 ## Descripción
 
