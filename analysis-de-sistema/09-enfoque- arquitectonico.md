@@ -1,1 +1,2 @@
-![Enfoque Arquitectonico](../clean-architecture.png)
+![Enfoque Arquitectonico](../clean-architecture%20.png)
+git add .
