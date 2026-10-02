@@ -11,32 +11,48 @@ y las restricciones identificadas durante el análisis del sistema.
 
 ## 2. Drivers identificados
 
-| ID   | Driver arquitectónico                                                                            | Origen                              | ¿Por qué influye en la arquitectura?                                                                                              |
-| ---- | ------------------------------------------------------------------------------------------------ | ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| DA01 | El sistema debe soportar un incremento importante de usuarios durante campañas comerciales.      | AC03 - Escalabilidad                | Influye en la estrategia de escalamiento, distribución de carga y despliegue de los componentes del sistema.                      |
-| DA02 | El sistema debe mantener tiempos de respuesta adecuados durante escenarios de alta concurrencia. | AC01 - Rendimiento                  | Influye en la comunicación entre componentes, procesamiento de solicitudes, acceso a datos y mecanismos de optimización.          |
-| DA03 | El sistema debe mantener disponibilidad durante periodos de alta demanda.                        | AC02 - Disponibilidad               | Influye en la estrategia de despliegue, tolerancia a fallos y disponibilidad de los componentes críticos.                         |
-| DA04 | El sistema debe proteger los datos de usuarios y operaciones de compra.                          | AC04 - Seguridad                    | Influye en los mecanismos de autenticación, autorización, protección de datos y comunicación segura.                              |
-| DA05 | El sistema debe integrarse con una pasarela de pago externa mediante una API.                    | RC04 - Pasarela de pago             | Condiciona la forma de comunicación con el servicio externo y requiere definir mecanismos de integración y manejo de respuestas.  |
-| DA06 | El sistema debe utilizar una API REST para la comunicación entre frontend y backend.             | RC03 - API REST                     | Limita las alternativas de comunicación entre las diferentes partes de la solución y condiciona el diseño de las interfaces.      |
-| DA07 | El sistema debe integrarse con servicios externos de envío y facturación.                        | RC05, RC06 - Servicios externos     | Influye en la definición de interfaces, adaptadores y mecanismos para gestionar errores o indisponibilidad de servicios externos. |
-| DA08 | El sistema debe obtener información de productos y stock desde un ERP externo.                   | RC07 - Integración con ERP          | Influye en la estrategia de integración, sincronización y consistencia de la información de productos y stock.                    |
-| DA09 | El sistema debe mantener la consistencia de la información de pedidos, stock y pagos.            | AC07 - Integridad de datos          | Influye en la gestión de transacciones, persistencia y coordinación de las operaciones críticas del negocio.                      |
-| DA10 | El sistema debe facilitar la incorporación de cambios y nuevas funcionalidades.                  | AC05 - Mantenibilidad               | Influye en la modularización del sistema, separación de responsabilidades y organización de los componentes.                      |
-| DA11 | El sistema debe permitir la comunicación con diferentes servicios externos.                      | AC06 - Interoperabilidad            | Influye en el diseño de interfaces, contratos de comunicación y mecanismos de integración.                                        |
-| DA12 | El sistema debe controlar el acceso según los roles de cliente, seller y administrador.          | RC08 - Autenticación y autorización | Influye en el diseño del mecanismo de autenticación, autorización y control de acceso a los recursos.                             |
+| ID   | Driver arquitectónico                                                                            | Origen                  | ¿Por qué influye en la arquitectura?                                                                     |
+| ---- | ------------------------------------------------------------------------------------------------ | ----------------------- | -------------------------------------------------------------------------------------------------------- |
+| DA01 | El sistema debe soportar un incremento importante de usuarios durante campañas comerciales.      | AC03 - Escalabilidad    | Influye en la estrategia de escalamiento y en la forma en que se despliegan los componentes del sistema. |
+| DA02 | El sistema debe mantener tiempos de respuesta adecuados durante escenarios de alta concurrencia. | AC01 - Rendimiento      | Influye en la comunicación entre componentes, el procesamiento de solicitudes y el acceso a los datos.   |
+| DA03 | El sistema debe proteger los datos de los usuarios y las operaciones de compra.                  | AC04 - Seguridad        | Influye en los mecanismos de autenticación, autorización, protección de datos y comunicación segura.     |
+| DA04 | El sistema debe integrarse con una pasarela de pago externa mediante una API.                    | RC04 - Pasarela de pago | Condiciona la forma de comunicación e integración con servicios externos y el manejo de sus respuestas.  |
+| DA05 | El sistema debe utilizar una API REST para la comunicación entre el frontend y el backend.       | RC03 - API REST         | Condiciona la comunicación entre las diferentes partes del sistema y la definición de sus interfaces.    |
+| DA06 | El sistema debe permitir modificar funcionalidades sin afectar innecesariamente otros módulos.   | AC05 - Mantenibilidad   | Influye en la separación de responsabilidades, modularidad y dependencias internas del sistema.          |
 
-## 3. Drivers prioritarios para el diseño
+## 3. Relación con los atributos de calidad y restricciones
 
-Los drivers que tendrán mayor impacto inicial en las decisiones arquitectónicas
-son:
+Los drivers arquitectónicos seleccionados se relacionan con los principales
+atributos de calidad y restricciones identificados durante el análisis:
 
-1. Escalabilidad ante incrementos de usuarios.
-2. Rendimiento bajo alta concurrencia.
-3. Seguridad de usuarios y operaciones.
-4. Integración con servicios externos.
-5. Integridad de pedidos, stock y pagos.
-6. Mantenibilidad mediante separación de responsabilidades.
+| Driver                                  | Elemento de origen      |
+| --------------------------------------- | ----------------------- |
+| DA01 - Escalabilidad                    | AC03 - Escalabilidad    |
+| DA02 - Rendimiento                      | AC01 - Rendimiento      |
+| DA03 - Seguridad                        | AC04 - Seguridad        |
+| DA04 - Integración con pasarela de pago | RC04 - Pasarela de pago |
+| DA05 - API REST                         | RC03 - API REST         |
+| DA06 - Mantenibilidad                   | AC05 - Mantenibilidad   |
 
-Estos drivers servirán como base para definir la arquitectura inicial del
-marketplace y justificar las principales decisiones arquitectónicas.
+## 4. Influencia en la arquitectura
+
+Los drivers identificados serán utilizados como referencia para definir la
+arquitectura inicial del marketplace.
+
+En particular:
+
+- **DA01 - Escalabilidad:** orientará las decisiones relacionadas con el
+  crecimiento de usuarios y solicitudes durante campañas comerciales.
+- **DA02 - Rendimiento:** orientará las decisiones relacionadas con el
+  procesamiento de solicitudes y acceso a los datos.
+- **DA03 - Seguridad:** orientará las decisiones relacionadas con el control
+  de acceso y protección de la información.
+- **DA04 - Pasarela de pago:** orientará el mecanismo de integración con el
+  servicio externo de pagos.
+- **DA05 - API REST:** establecerá el mecanismo de comunicación entre la
+  aplicación web y la lógica de negocio.
+- **DA06 - Mantenibilidad:** orientará la separación de responsabilidades,
+  modularidad y control de dependencias entre los componentes.
+
+Estos drivers constituyen la base para justificar las principales decisiones
+de la arquitectura inicial del Marketplace de Productos para Mascotas.
